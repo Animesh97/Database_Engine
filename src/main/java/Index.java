@@ -12,9 +12,9 @@ public class Index {
 		qp.setToken();
 		qp.setFile();
 		qp.setBase();
-		qp.setFilter();
-		qp.setConditions();
-		qp.setOperators();
+		System.out.println("Filter: "+qp.setFilter());
+		System.out.println(qp.setConditions());
+		System.out.println(qp.setOperators());
 		qp.setFields();
 	}
 

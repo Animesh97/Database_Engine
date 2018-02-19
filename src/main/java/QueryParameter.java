@@ -7,26 +7,27 @@ public class QueryParameter {
 		this.qry = qry;
 	}
 
-	public void setFile() {
+	public String setFile() {
 		int i;
 		for(i=0;i<token.length;i++) {
 			if(token[i].equals("from"))
 				break;
 		}
 		this.file = token[i+1];
-		
+		return this.file;
 	}
 
 	public void setToken() {
 		this.token = qry.split(",|\\s");
 	}
 
-	public void setBase() {
+	public String setBase() {
 		int i=qry.indexOf("where");
 		if(i==-1)
 			this.base = qry;
 		else
 			this.base=qry.substring(0, i);
+		return this.base.trim();
 	}
 
 	public QueryParameter() {
@@ -36,32 +37,43 @@ public class QueryParameter {
 		field = new ArrayList<String>();
 	}
 
-	public void setFilter() {
+	public String setFilter() {
 		int i=qry.indexOf("where");
 		if(i==-1)
 			this.filter = "NULL";
 		else
 			this.filter=qry.substring(i+6);
+		return this.filter.trim();
 	}
 
-	public void setConditions() {
+	public String setConditions() {
 		int i,l;
+		String s="";
 		l=token.length;
 		for(i=0;i<l;i++)
 		{
 			if(token[i].equals("<") || token[i].equals(">") || token[i].equals(">=") || 
 					token[i].equals("<=") || token[i].equals("=") || token[i].equals("like") || token[i].equals("!="))
+			{
 				System.out.println(token[i-1]+token[i]+token[i+1]);
+				s+=token[i-1]+token[i]+token[i+1]+" ";
+			}
 		}
+		return s.trim();
 	}
 
-	public void setOperators() {
+	public String setOperators() {
 		int i,l;
+		String s="";
 		l=token.length;
 		for(i=0;i<l;i++) {
 			if(token[i].equalsIgnoreCase("AND") || token[i].equalsIgnoreCase("OR") || token[i].equalsIgnoreCase("NOT"))
+			{
 				System.out.println(token[i]);
+				s+=token[i]+" ";
+			}
 		}
+		return s.trim();
 	}
 
 	public void setFields() {
