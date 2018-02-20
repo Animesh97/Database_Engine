@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Assertions.*;
 
 @RunWith(JUnitPlatform.class)
 public class MainTest {
-public class test {
 	QueryParameter qp=null;
 	
 	/*@BeforeAll
