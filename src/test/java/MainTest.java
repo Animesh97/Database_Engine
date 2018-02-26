@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Assertions.*;
 @RunWith(JUnitPlatform.class)
 public class MainTest {
 	QueryParameter qp=null;
+	AggregateFunctions af=null;
 	
 	/*@BeforeAll
 	void initialise()
@@ -21,7 +22,7 @@ public class MainTest {
 	void create() {
 		System.out.println("In BeforeEach annotation");	
 		qp=new QueryParameter();
-		
+		af=new AggregateFunctions();
 	}
 	@Test			//Testing File Name Extraction
 	void checkFile() {
@@ -54,8 +55,16 @@ public class MainTest {
 		qp.setToken();
 		assertEquals("and or", qp.setOperators());
 	}
+	@Test
+	void checkAggregate()
+	{
+		String query="select avg(win_by_wickets),min(win_by_runs) from ipl.csv";
+		
+		assertEquals("avg(win_by_wickets)min(win_by_runs)",af.getFunctions(query));
+	}
 	@AfterEach
 	void destroy() {
 		qp=null;
+		af=null;
 	}
 }
